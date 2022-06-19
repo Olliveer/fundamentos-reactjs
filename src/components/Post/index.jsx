@@ -29,6 +29,10 @@ export function Post({ post }) {
     setNewComment('');
   }
 
+  function deleteComment(comment) {
+    setComments(comments.filter((c) => c !== comment));
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -75,7 +79,13 @@ export function Post({ post }) {
 
       <div className={styles.commentList}>
         {comments.map((comment, index) => {
-          return <Comment key={index} content={comment} />;
+          return (
+            <Comment
+              key={index}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          );
         })}
       </div>
     </article>
