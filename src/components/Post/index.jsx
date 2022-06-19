@@ -24,6 +24,9 @@ export function Post({ post }) {
 
   function handleCreateNewComment(event) {
     event.preventDefault();
+    if (newComment === '') {
+      return alert('Por favor, digite um comentário');
+    }
 
     setComments([...comments, newComment]);
     setNewComment('');
@@ -73,7 +76,9 @@ export function Post({ post }) {
         />
 
         <footer>
-          <button type={'submit'}>Publicar</button>
+          <button type={'submit'} disabled={newComment.length === 0}>
+            Publicar
+          </button>
         </footer>
       </form>
 
